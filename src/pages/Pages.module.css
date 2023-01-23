@@ -1,0 +1,14 @@
+.auto{
+    display: flex;
+    justify-content: end;
+    background-image: url("https://cdn.mos.cms.futurecdn.net/3PpHidg9XYP7wEFWoqARHW-1200-80.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 1024px;
+    margin: 0;
+}
