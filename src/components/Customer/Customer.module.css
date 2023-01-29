@@ -1,0 +1,38 @@
+.paperStyle {
+    padding: 10px 20px 20px 20px;
+    margin: 20px auto;
+    text-align: center;
+    opacity: 0.95;
+    width: 550px;
+}
+
+.header {
+    font-family: "Brush Script MT", cursive;
+    font-size: 60px;
+}
+
+.Info{
+    display: flex;
+    flex-direction: column;
+   align-items: start;
+    justify-content: center;
+    margin: 5px 70px;
+    font-size: 24px;
+    font-family: "Arial Unicode MS", cursive;
+}
+
+.line{
+    margin: 5px 0;
+}
+
+.button{
+    margin: 15px;
+    background-color: darkcyan;
+    font-family: "Arial Unicode MS", cursive;
+}
+
+
+.photo{
+    border-radius: 5%;
+
+}

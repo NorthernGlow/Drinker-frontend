@@ -12,3 +12,18 @@
     height: 1024px;
     margin: 0;
 }
+
+.Background{
+    display: flex;
+    justify-content: center;
+    background-image: url("https://www.travelandleisure.com/thmb/zT6ziYSTlSu1sl8bqSTHGpKkgwg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/alcohol-bottles-bar-STRONGESTLIQS9121-a5960ae2cdbf4a8481b1ea60847f2dcc.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 1024px;
+    margin: 0;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {AuthorizationCustomer} from "../components";
 import css from './Pages.module.css'
 

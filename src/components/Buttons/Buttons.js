@@ -6,8 +6,8 @@ import css from './Buttons.module.css'
 const Buttons = () => {
     const navigate = useNavigate();
 
-    const onClickAutorization = ()=>{
-        navigate('/autorization')
+    const onClickAuthorization = ()=>{
+        navigate('/authorization')
     }
 
     const onClickRegistration = () => {
@@ -15,7 +15,7 @@ const Buttons = () => {
     }
     return (
         <div className={css.Buttons}>
-            <div className={css.Button} onClick={onClickAutorization}>Вхід</div> /
+            <div className={css.Button} onClick={onClickAuthorization}>Вхід</div> /
             <div className={css.Button} onClick={onClickRegistration}>Реєстрація</div>
         </div>
     );
