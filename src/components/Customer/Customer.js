@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {Button, Container, Paper} from "@mui/material";
 
 import css from "./Customer.module.css";
@@ -8,6 +8,8 @@ import css from "./Customer.module.css";
 
 const Customer = () => {
     const [customer, setCustomer] = useState({});
+    const navigate = useNavigate();
+
     let {id} = useParams();
 
     useEffect(() => {
@@ -18,6 +20,22 @@ const Customer = () => {
             })
 
     }, [id])
+
+    function AddNewBuilding(){
+        navigate(`/customer/${id}/building`)
+    }
+
+    function ChangeInformation() {
+        navigate(`/customer/${id}/update`)
+    }
+
+    function AllMyBuilding() {
+        navigate(`/customer/${id}/allBuilding`)
+    }
+
+    function FavoriteBuilding() {
+        navigate(`/customer/${id}/favoriteBuilding`)
+    }
 
     return (
         <div>
@@ -32,7 +50,12 @@ const Customer = () => {
                         <div className={css.line}>Прізвище: {customer.surname}</div>
                         <div className={css.line}>Email: {customer.email}</div>
                     </div>
-                    <Button variant="contained" className={css.button}>Змінити інформацію про користувача</Button>
+                    <Button variant="contained" className={css.button} onClick={ChangeInformation}>Змінити інформацію про користувача</Button>
+                    <div className={css.buttons}>
+                        <Button variant="contained" className={css.button} onClick={AllMyBuilding}>Мої заклади</Button>
+                        <Button variant="contained" className={css.button} onClick={AddNewBuilding}>Додати новий заклад</Button>
+                        <Button variant="contained" className={css.button} onClick={FavoriteBuilding}>Вподобані заклади</Button>
+                    </div>
                 </Paper>
             </Container>
         </div>

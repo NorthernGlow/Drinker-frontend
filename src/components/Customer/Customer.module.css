@@ -31,6 +31,10 @@
     font-family: "Arial Unicode MS", cursive;
 }
 
+.buttons{
+    display: flex;
+    justify-content: center;
+}
 
 .photo{
     border-radius: 5%;

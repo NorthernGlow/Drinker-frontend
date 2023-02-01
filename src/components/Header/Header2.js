@@ -82,7 +82,7 @@ const Header2 = () => {
     let navigate = useNavigate();
     let {id} = useParams();
     function onClickAvatar() {
-        navigate(`/${id}`)
+        navigate(`/customer/${id}`)
     }
 
     return (
