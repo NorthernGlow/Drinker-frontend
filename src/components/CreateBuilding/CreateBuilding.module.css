@@ -1,0 +1,61 @@
+.Form {
+    display: flex;
+    flex-direction: column;
+}
+
+.Button {
+    background-color: cadetblue;
+    margin-top: 5px;
+}
+
+.Input {
+    margin: 5px;
+}
+
+.paperStyle {
+    padding: 10px 20px 20px 20px;
+    margin: 20px auto;
+    text-align: center;
+    opacity: 0.95;
+    width: 650px;
+}
+
+.header {
+    font-family: "Brush Script MT", cursive;
+    font-size: 40px;
+}
+
+.Img {
+    width: calc(100% / 3 - 50px);
+    margin: 5px 0;
+}
+
+.Images {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 5px;
+    flex-wrap: wrap;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom_file_upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: darkcyan;
+    color: honeydew;
+}
+
+h2{
+    color: black;
+}
+
+.Day{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+}

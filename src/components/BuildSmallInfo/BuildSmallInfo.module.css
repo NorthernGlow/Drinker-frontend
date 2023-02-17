@@ -1,0 +1,22 @@
+.image {
+    width: 150px;
+    margin: 20px 15px;
+    border-radius: 10px;
+}
+
+.h2 {
+    /*margin-left: 50px;*/
+    opacity: 100%;
+    color: black;
+}
+
+.h3 {
+    /*margin-left: 50px;*/
+    opacity: 100%;
+    color: black;
+}
+
+.box {
+    display: flex;
+
+}

@@ -1,18 +1,19 @@
 import React from 'react';
 
-import {Filter, DrinksSmallInfo, News} from '../index'
+import {Filter, News, Builds} from '../index'
+import css from './Main.module.css'
 
 const Main = () => {
     return (
-        <div>
+        <div className={css.Main}>
             <div>
                 <News/>
             </div>
             <div>
                 <Filter/>
             </div>
-            <div>
-                <DrinksSmallInfo/>
+            <div className={css.Builds}>
+                <Builds/>
             </div>
         </div>
     );

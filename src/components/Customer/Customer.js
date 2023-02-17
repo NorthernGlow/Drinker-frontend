@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
-import {Button, Container, Paper} from "@mui/material";
+import {Container, Paper} from "@mui/material";
 
 import css from "./Customer.module.css";
 
@@ -9,8 +9,7 @@ import css from "./Customer.module.css";
 const Customer = () => {
     const [customer, setCustomer] = useState({});
     const navigate = useNavigate();
-
-    let {id} = useParams();
+    const {id} = useParams();
 
     useEffect(() => {
         fetch(`http://localhost:8080/customer/${id}`)
@@ -20,9 +19,11 @@ const Customer = () => {
             })
 
     }, [id])
+    
+    console.log(customer);
 
     function AddNewBuilding(){
-        navigate(`/customer/${id}/building`)
+        navigate(`/customer/${id}/addBuilding`)
     }
 
     function ChangeInformation() {
@@ -50,11 +51,11 @@ const Customer = () => {
                         <div className={css.line}>Прізвище: {customer.surname}</div>
                         <div className={css.line}>Email: {customer.email}</div>
                     </div>
-                    <Button variant="contained" className={css.button} onClick={ChangeInformation}>Змінити інформацію про користувача</Button>
+                    <button variant="contained" className={css.button} onClick={ChangeInformation}>Змінити інформацію про користувача</button>
                     <div className={css.buttons}>
-                        <Button variant="contained" className={css.button} onClick={AllMyBuilding}>Мої заклади</Button>
-                        <Button variant="contained" className={css.button} onClick={AddNewBuilding}>Додати новий заклад</Button>
-                        <Button variant="contained" className={css.button} onClick={FavoriteBuilding}>Вподобані заклади</Button>
+                        <button variant="contained" className={css.button} onClick={AllMyBuilding}>Мої заклади</button>
+                        <button variant="contained" className={css.button} onClick={AddNewBuilding}>Додати новий заклад</button>
+                        <button variant="contained" className={css.button} onClick={FavoriteBuilding}>Вподобані заклади</button>
                     </div>
                 </Paper>
             </Container>

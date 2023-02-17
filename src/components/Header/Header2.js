@@ -85,9 +85,13 @@ const Header2 = () => {
         navigate(`/customer/${id}`)
     }
 
+    function onClickIcon() {
+        navigate(`/customer/drinks`)
+    }
+
     return (
         <div className={css.Header}>
-            <LocalBarIcon className={css.Icon}/>
+            <LocalBarIcon className={css.Icon} onClick={onClickIcon}/>
             <Search>
                 <SearchIconWrapper>
                     <SearchIcon/>
