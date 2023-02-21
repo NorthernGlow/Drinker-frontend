@@ -23,3 +23,8 @@
     font-family: "Brush Script MT", cursive;
     font-size: 40px;
 }
+
+.Error{
+    color: rgba(200,12,8,0.76);
+    margin-bottom: 0;
+}

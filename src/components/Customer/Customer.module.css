@@ -44,3 +44,15 @@
     border-radius: 5%;
 
 }
+
+.custom_file_upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: darkcyan;
+    border: 3px solid silver;
+    font-family: "Arial Unicode MS", cursive;
+    font-size: 17px;
+}

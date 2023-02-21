@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Container, Paper, TextField} from "@mui/material";
 
 import css from "./Registration.module.css"
+import {useNavigate} from "react-router-dom";
 
 
 const Registration = () => {
@@ -10,6 +11,8 @@ const Registration = () => {
     const [email, setEmail] = useState('');
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -22,6 +25,8 @@ const Registration = () => {
         }).then(() => {
             console.log("New Customer added")
         })
+
+        navigate('customer');
 
     }
 
