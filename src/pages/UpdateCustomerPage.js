@@ -1,9 +1,11 @@
 import React from 'react';
+import {UpdateCustomer} from "../components";
+import css from "./Pages.module.css";
 
 const UpdateCustomerPage = () => {
     return (
-        <div>
-
+        <div className={css.Background}>
+            <UpdateCustomer/>
         </div>
     );
 };

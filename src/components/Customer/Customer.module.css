@@ -42,17 +42,37 @@
 
 .photo{
     border-radius: 5%;
-
+    height: 200px;
+}
+.photo2{
+    border-radius: 5%;
+    max-height: 300px;
+    min-height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
 .custom_file_upload {
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
-    margin: 10px 0;
+    margin: 10px 5px;
     border-radius: 5px;
     background-color: darkcyan;
     border: 3px solid silver;
     font-family: "Arial Unicode MS", cursive;
     font-size: 17px;
+}
+
+.SavePhoto{
+    display: flex;
+    flex-direction: column;
+}
+
+.block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -49,6 +49,7 @@ const CreateBuilding = () => {
         console.log(location);
         console.log(specifics);
         console.log(photos);
+
         fetch(`http://localhost:8080/customer/${id}/addBuilding`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
