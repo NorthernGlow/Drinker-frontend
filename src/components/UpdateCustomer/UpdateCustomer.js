@@ -30,6 +30,7 @@ const UpdateCustomer = () => {
         console.log(newCustomer);
         fetch(`http://localhost:8080/customer/${id}/update`, {
             method: "PUT",
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newCustomer)
         })
             .then(() => {
@@ -72,13 +73,11 @@ const UpdateCustomer = () => {
                     <form className={css.Form} noValidate autoComplete="off">
                         <TextField className={css.Input} id="outlined-basic" label={customer.name} variant="outlined"
                                    type={"text"} fullWidth
-                                   value={name}
                                    onChange={(e) => setName(e.target.value)}
                         />
                         <TextField className={css.Input} id="outlined-basic" label={customer.surname} variant="outlined"
                                    type={"text"}
                                    fullWidth
-                                   value={surname}
                                    onChange={(e) => setSurname(e.target.value)}
                         />
                         <Button className={css.Button} variant="contained" onClick={handleClick}>

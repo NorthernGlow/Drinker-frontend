@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 const BuildSmallInfo = ({build}) => {
 
-    const {id, name, averageCheck} = build;
+    const {id, name, averageCheck, mainPhoto} = build;
     const navigate = useNavigate();
     const r = 2.9;
 
@@ -17,9 +17,11 @@ const BuildSmallInfo = ({build}) => {
     return (
         <div className={css.box} onClick={onClickBuild}>
             <div>
-                <img className={css.image}
-                    src="https://bzh.life/wp-content/uploads/2022/11/316152468_114531001474609_4860082908267667783_n-1.jpg"
-                    alt="rest"/>
+                {mainPhoto ? <img className={css.image}
+                                  src={`http://localhost:8080/buildPhoto/${mainPhoto}`} alt="rest"/> :
+                    <img className={css.image}
+                         src="https://bzh.life/wp-content/uploads/2022/11/316152468_114531001474609_4860082908267667783_n-1.jpg"
+                         alt="rest"/>}
             </div>
             <div>
                 {build && <h2 className={css.h2}>{name}</h2>}

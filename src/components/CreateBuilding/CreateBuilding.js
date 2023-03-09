@@ -103,38 +103,6 @@ const CreateBuilding = () => {
                                    value={averageCheck}
                                    onChange={(e) => setAverageCheck(e.target.value)}
                         />
-                        {/*<h2>Графік роботи:</h2>*/}
-                        {/*<FormGroup className={css.Day}>*/}
-                        {/*    <FormControlLabel*/}
-                        {/*        control={<Checkbox name="mon" value={wifi} onChange={() => setWifi(!wifi)}/>}*/}
-                        {/*        label="ПН"*/}
-
-                        {/*    />*/}
-                        {/*    <FormControlLabel control={<Checkbox name="tues" value={parking}*/}
-                        {/*                                         onChange={() => setParking(!parking)}/>}*/}
-                        {/*                      label="ВТ"*/}
-                        {/*    />*/}
-                        {/*    <FormControlLabel control={<Checkbox name="wed" value={liveMusic}*/}
-                        {/*                                         onChange={() => setLiveMusic(!liveMusic)}/>}*/}
-                        {/*                      label="СР"*/}
-                        {/*    />*/}
-                        {/*    <FormControlLabel control={<Checkbox name="thurs" value={withAnimal}*/}
-                        {/*                                         onChange={() => setWithAnimal(!withAnimal)}/>}*/}
-                        {/*                      label="ЧТ"*/}
-                        {/*    />*/}
-                        {/*    <FormControlLabel control={<Checkbox name="fri" value={parking}*/}
-                        {/*                                         onChange={() => setParking(!parking)}/>}*/}
-                        {/*                      label="ПТ"*/}
-                        {/*    />*/}
-                        {/*    <FormControlLabel control={<Checkbox name="sat" value={liveMusic}*/}
-                        {/*                                         onChange={() => setLiveMusic(!liveMusic)}/>}*/}
-                        {/*                      label="СБ"*/}
-                        {/*    />*/}
-                        {/*    <FormControlLabel control={<Checkbox name="sun" value={withAnimal}*/}
-                        {/*                                         onChange={() => setWithAnimal(!withAnimal)}/>}*/}
-                        {/*                      label="НД"*/}
-                        {/*    />*/}
-                        {/*</FormGroup>*/}
                         <TextField className={css.Input} id="outlined-basic" label="Графік роботи" variant="outlined"
                                    type={"text"}
                                    fullWidth

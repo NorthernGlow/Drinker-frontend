@@ -15,7 +15,6 @@ const Builds = () => {
             })
 
     }, [])
-    console.log(building);
 
     return (
         <div>
