@@ -9,40 +9,40 @@ import {useForm} from "react-hook-form";
 const Customer = () => {
     const [customer, setCustomer] = useState({});
     const navigate = useNavigate();
-    const {id} = useParams();
+    const {customerId} = useParams();
     const formData = new FormData();
 
     useEffect(() => {
-        fetch(`http://localhost:8080/customer/${id}`)
+        fetch(`http://localhost:8080/customer/${customerId}`)
             .then((res) => res.json())
             .then((result) => {
                 setCustomer(result)
             })
 
-    }, [id])
+    }, [customerId])
 
     function AddNewBuilding() {
-        navigate(`/customer/${id}/addBuilding`)
+        navigate(`/customer/${customerId}/addBuilding`)
 
     }
 
     function ChangeInformation() {
-        navigate(`/customer/${id}/update`)
+        navigate(`/customer/${customerId}/update`)
 
     }
 
     function AllMyBuilding() {
-        navigate(`/customer/${id}/allBuilding`)
+        navigate(`/customer/${customerId}/allBuilding`)
 
     }
 
     function FavoriteBuilding() {
-        navigate(`/customer/${id}/favoriteBuilding`)
+        navigate(`/customer/${customerId}/favoriteBuilding`)
 
     }
 
     function SubmitFileDada() {
-        fetch(`http://localhost:8080/customer/${id}`, {
+        fetch(`http://localhost:8080/customer/${customerId}`, {
             method: "PUT",
             body: formData
         })

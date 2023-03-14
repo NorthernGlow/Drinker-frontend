@@ -6,7 +6,7 @@ import css from "./UpdateCustomer.module.css";
 
 const UpdateCustomer = () => {
     const [customer, setCustomer] = useState({});
-    const {id} = useParams();
+    const {customerId} = useParams();
     const formData = new FormData();
 
     const [surname, setSurname] = useState('');
@@ -16,19 +16,19 @@ const UpdateCustomer = () => {
     // const [password, setPassword] = useState('');
 
     useEffect(() => {
-        fetch(`http://localhost:8080/customer/${id}`)
+        fetch(`http://localhost:8080/customer/${customerId}`)
             .then((res) => res.json())
             .then((result) => {
                 setCustomer(result)
             })
 
-    }, [id])
+    }, [customerId])
 
     function handleClick() {
 
         const newCustomer = {name, surname};
         console.log(newCustomer);
-        fetch(`http://localhost:8080/customer/${id}/update`, {
+        fetch(`http://localhost:8080/customer/${customerId}/update`, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newCustomer)
@@ -41,7 +41,7 @@ const UpdateCustomer = () => {
     }
 
     function SubmitFileDada() {
-        fetch(`http://localhost:8080/customer/${id}`, {
+        fetch(`http://localhost:8080/customer/${customerId}`, {
             method: "PUT",
             body: formData
         })

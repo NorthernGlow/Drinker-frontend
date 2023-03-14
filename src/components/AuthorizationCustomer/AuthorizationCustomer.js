@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 const AuthorizationCustomer = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    const [answer, setAnswer] = useState('');
+    const [answer, setAnswer] = useState(0);
 
     const navigate = useNavigate();
 
@@ -22,15 +22,13 @@ const AuthorizationCustomer = () => {
         }).then((res) => res.json())
             .then((result) => {
                 setAnswer(result)
-            }).then(()=>{localStorage.setItem('customerId',JSON.stringify(answer))})
-        if (answer !== false) {
+            })
+        if (answer !== 0) {
+            localStorage.setItem('customerId', JSON.stringify(answer))
             navigate('/customer/drinks')
         }
     }
-    //
-    // useEffect(()=>{
-    //
-    // },[])
+
     return (
         <div>
             <Container>
@@ -51,7 +49,7 @@ const AuthorizationCustomer = () => {
                             Ввійти
                         </Button>
                     </form>
-                    {answer === false && <h4 className={css.Error}>Ви ввели невірно дані</h4>}
+                    {answer === 0 && <h4 className={css.Error}>Ви ввели невірно дані</h4>}
                 </Paper>
             </Container>
         </div>

@@ -6,10 +6,13 @@ import {useNavigate, useParams} from "react-router-dom";
 
 const CreateBuilding = () => {
 
-    const [urls, setUrls] = useState([]);
+    const navigate = useNavigate();
 
-    const {id} = useParams();
-    const customerId = id;
+    const {customerId} = useParams();
+
+    const formData = new FormData();
+
+    const [buildId, setBuildId] = useState(0);
     const [name, setName] = useState('');
     const [averageCheck, setAverageCheck] = useState('');
     const [schedule, setSchedule] = useState('');
@@ -35,6 +38,9 @@ const CreateBuilding = () => {
     const [liveMusic, setLiveMusic] = useState(false);
     const [withAnimal, setWithAnimal] = useState(false);
 
+    const [save, setSave] = useState(false);
+    const [savePhoto, setSavePhoto] = useState(false);
+
 
     function handleClick() {
         const location = {city, region, street, buildingNumber}
@@ -43,27 +49,41 @@ const CreateBuilding = () => {
             forAnniversaries, forChildren, forFamily, forFriends
         }
         const specifics = {wifi, parking, liveMusic, withAnimal}
-        const photos = {urls}
-        const building = {customerId, name, averageCheck, location, specifics, teg}
+        // const photos = {urls}
+        const building = {customerId, name, averageCheck, schedule ,phone, location, specifics, teg}
         console.log(building);
         console.log(location);
         console.log(specifics);
-        console.log(photos);
+        // console.log(photos);
+        setSave(true);
 
-        fetch(`http://localhost:8080/customer/${id}/addBuilding`, {
+        fetch(`http://localhost:8080/customer/${customerId}/addBuilding`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(building)
 
-        }).then(() => {
-            console.log("New Building added")
-        })
+        }).then((res) => res.json())
+            .then((result) => {
+                setBuildId(result)
+                console.log("New Build added")
+            })
 
     }
 
-    function handleChange(e) {
-        setUrls(arr => [URL.createObjectURL(e.target.files[0]), ...arr])
-        console.log(urls);
+    function onFileChange(e) {
+        if (e.target && e.target.files[0]) {
+            formData.append('photo', e.target.files[0]);
+        }
+    }
+
+    function SubmitFileDada() {
+        setSavePhoto(true);
+        fetch(`http://localhost:8080/building/${buildId}`, {
+            method: "PUT",
+            body: formData
+        })
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
     }
 
     return (
@@ -176,23 +196,28 @@ const CreateBuilding = () => {
                                               label="#ДляДрузів"
                             />
                         </FormGroup>
-
-                        <div>
-                            <h2>Додати фотографії</h2>
-                            <div className={css.Images}>
-                                {
-                                    urls.map((url) => <img className={css.Img} src={url} alt={"photo"}/>)
-                                }
-                            </div>
-                            <label htmlFor={"file-upload"} className={css.custom_file_upload}>
-                                Завантажити зображення
-                            </label>
-                            <input id={"file-upload"} type={"file"} onChange={handleChange}/>
-                        </div>
                         <Button className={css.Button} variant="contained" onClick={handleClick}>
                             Зберегти
                         </Button>
                     </form>
+                    {
+                        save && <div className={css.text}>Будівлю було додано</div>
+                    }
+                    <div>
+                        <h2>Додати основну фотографію</h2>
+                        <div className={css.block}>
+                            <input id={"file-upload"} type={"file"} onChange={onFileChange}/>
+                            <button className={css.custom_file_upload} onClick={SubmitFileDada}>Зберегти
+                                зображення
+                            </button>
+                        </div>
+                        {
+                            savePhoto && <div className={css.text}>Фотографію збережено</div>
+                        }
+                    </div>
+                    {
+                        (save && savePhoto) && <button onClick={()=>navigate(`/customer/${customerId}`)}>Перейти до свого профілю</button>
+                    }
                 </Paper>
             </Container>
         </div>

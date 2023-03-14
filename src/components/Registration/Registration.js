@@ -22,11 +22,12 @@ const Registration = () => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(customer)
 
-        }).then(() => {
-            console.log("New Customer added")
-        })
-
-        navigate('customer');
+        }).then((res) => res.json())
+            .then((result) => {
+                localStorage.setItem('customerId', JSON.stringify(result))
+                console.log("New Customer added")
+            })
+        navigate('/customer/drinks');
 
     }
 

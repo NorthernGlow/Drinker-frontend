@@ -1,10 +1,19 @@
-import React from 'react';
-import {alpha, Avatar, InputBase, styled} from "@mui/material";
+import React, {useEffect, useState} from 'react';
+import {
+    alpha,
+    Avatar, Button, Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    InputBase,
+    styled
+} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import LocalBarIcon from '@mui/icons-material/LocalBar';
+import {useNavigate} from "react-router-dom";
 
 import css from './Header.module.css'
-import {useNavigate, useParams} from "react-router-dom";
 
 
 const Search = styled('div')(({theme}) => ({
@@ -53,7 +62,6 @@ function stringToColor(string) {
     let hash = 0;
     let i;
 
-    /* eslint-disable no-bitwise */
     for (i = 0; i < string.length; i += 1) {
         hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
@@ -64,7 +72,6 @@ function stringToColor(string) {
         const value = (hash >> (i * 8)) & 0xff;
         color += `00${value.toString(16)}`.slice(-2);
     }
-    /* eslint-enable no-bitwise */
 
     return color;
 }
@@ -80,13 +87,41 @@ function stringAvatar(name) {
 
 const Header2 = () => {
     let navigate = useNavigate();
-    let {id} = useParams();
+    const [customer, setCustomer] = useState({});
+    const [open, setOpen] = useState(false);
+
+    const customerId = localStorage.getItem('customerId');
+
+    useEffect(() => {
+        fetch(`http://localhost:8080/customer/${customerId}`)
+            .then((res) => res.json())
+            .then((result) => {
+                setCustomer(result)
+            })
+
+    }, [customerId])
+
+
     function onClickAvatar() {
-        navigate(`/customer/${id}`)
+        navigate(`/customer/${customerId}`)
     }
 
     function onClickIcon() {
         navigate(`/customer/drinks`)
+    }
+
+    function Exit() {
+        setOpen(false)
+        localStorage.clear();
+        navigate(`/authorization`)
+    }
+
+    function handleClose() {
+        setOpen(false)
+    }
+
+    function ModalIconExit() {
+        setOpen(true)
     }
 
     return (
@@ -101,7 +136,31 @@ const Header2 = () => {
                     inputProps={{'aria-label': 'search'}}
                 />
             </Search>
-            <Avatar {...stringAvatar('Sasha Marik')} onClick={onClickAvatar}/>
+            <div className={css.avatar}>
+                <Avatar {...stringAvatar(`${customer.name} ${customer.surname}`)} onClick={onClickAvatar}/>
+                <button className={css.btn} onClick={ModalIconExit}>Вийти</button>
+            </div>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{`Вихід`}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Ви дійсно хочете вийти?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        НІ
+                    </Button>
+                    <Button onClick={Exit} color="primary" autoFocus>
+                        ТАК
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };

@@ -7,6 +7,7 @@ import {Comment} from "../Comment/Comment";
 
 const Building = () => {
     const [building, setBuilding] = useState([]);
+    const [customer, setCustomer] = useState({});
 
     const [value, setValue] = useState(0.0);
     const [rating, setRating] = useState(0.0);
@@ -14,23 +15,34 @@ const Building = () => {
     const [comments, setComments] = useState([]);
     const [body, setBody] = useState("");
 
-    const {id} = useParams();
+    const {buildId} = useParams();
 
     const [com, setCom] = useState(false);
 
+    const customerId = localStorage.getItem('customerId');
+
     useEffect(() => {
-        fetch(`http://localhost:8080/customer/drinks/${id}`)
+        fetch(`http://localhost:8080/customer/${customerId}`)
+            .then((res) => res.json())
+            .then((result) => {
+                setCustomer(result)
+            })
+
+    }, [customerId])
+
+    useEffect(() => {
+        fetch(`http://localhost:8080/customer/drinks/${buildId}`)
             .then((res) => res.json())
             .then((result) => {
                 setBuilding(result)
             })
 
-    }, [id])
+    }, [buildId])
 
     function onChangeRating(e, newValue) {
         setValue(newValue)
 
-        fetch(`http://localhost:8080/customer/drinks/${id}`, {
+        fetch(`http://localhost:8080/customer/drinks/${buildId}`, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: value
@@ -41,14 +53,14 @@ const Building = () => {
             })
     }
 
-    function handleClick() {
+    function reservation() {
 
     }
 
     function handleClickComment(e) {
         e.preventDefault()
-        const buildingId = id;
-        const comment = {body, buildingId};
+        const buildingId = buildId;
+        const comment = {body, buildingId, customerId};
         fetch('http://localhost:8080/saveComment', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -57,11 +69,13 @@ const Building = () => {
         }).then(() => {
             console.log("New Comment added")
         })
+
+        window.location.reload(false);
     }
 
     function showComments() {
         setCom(true);
-        fetch(`http://localhost:8080/allComments/${id}`)
+        fetch(`http://localhost:8080/allComments/${buildId}`)
             .then((res) => res.json())
             .then((result) => {
                 setComments(result)
@@ -91,7 +105,7 @@ const Building = () => {
                                     onChange={onChangeRating}/>
                             <div>{value}</div>
                         </div>}
-                        <Button className={css.btn} variant="contained" onClick={handleClick}>
+                        <Button className={css.btn} variant="contained" onClick={reservation}>
                             Зарезервувати столик
                         </Button>
                     </div>
@@ -100,10 +114,10 @@ const Building = () => {
             <div className={css.Box_Com}>
                 <div className={css.BoxForComment}>
                     <img className={css.img}
-                         src="https://images.pexels.com/photos/2328141/pexels-photo-2328141.jpeg?cs=srgb&dl=pexels-lucas-pezeta-2328141.jpg&fm=jpg"
+                         src={`http://localhost:8080/photo/${customer.photo}`}
                          alt="photo"/>
                     <div>
-                        <h3 className={css.h2}>Name</h3>
+                        <h3 className={css.h2}>{customer.name} {customer.surname}</h3>
                         <TextField id="standard-multiline-static"
                                    label="Коментар"
                                    multiline

@@ -8,10 +8,10 @@ import {BuildSmallInfo} from "../BuildSmallInfo/BuildSmallInfo";
 const MyBuilding = () => {
 
     const [building, setBuilding] = useState([]);
-    const {id} = useParams();
+    const {customerId} = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:8080/customer/${id}/allBuilding`)
+        fetch(`http://localhost:8080/customer/${customerId}/allBuilding`)
             .then((res) => res.json())
             .then((result) => {
                 setBuilding(result)

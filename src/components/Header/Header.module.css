@@ -11,3 +11,14 @@
     font-size: 40px;
     margin: 20px;
 }
+
+.btn{
+    background: cadetblue;
+    border: 0;
+    font-family: Arial, cursive;
+    margin-left: 10px;
+}
+
+.avatar{
+    display: flex;
+}
