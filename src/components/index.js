@@ -14,3 +14,4 @@ export * from './Builds/Builds'
 export * from './MyBuilding/MyBuilding'
 export * from './UpdateCustomer/UpdateCustomer'
 export * from "./Comment/Comment"
+export * from './Search/Search'

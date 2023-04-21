@@ -58,6 +58,7 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
     },
 }));
 
+
 function stringToColor(string) {
     let hash = 0;
     let i;
@@ -89,6 +90,7 @@ const Header2 = () => {
     let navigate = useNavigate();
     const [customer, setCustomer] = useState({});
     const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState('');
 
     const customerId = localStorage.getItem('customerId');
 
@@ -124,18 +126,20 @@ const Header2 = () => {
         setOpen(true)
     }
 
+    function searchBuilding() {
+        localStorage.setItem('name', JSON.stringify(search))
+        navigate(`/customer/drinks/search`)
+    }
+
     return (
         <div className={css.Header}>
             <LocalBarIcon className={css.Icon} onClick={onClickIcon}/>
-            <Search>
-                <SearchIconWrapper>
-                    <SearchIcon/>
-                </SearchIconWrapper>
-                <StyledInputBase
-                    placeholder="Search…"
-                    inputProps={{'aria-label': 'search'}}
-                />
-            </Search>
+            <form>
+                <input type="text" className={css.search}
+                    value={search}
+                onChange={(e)=>setSearch(e.target.value)}/>
+                <button className={css.Button} onClick={searchBuilding}> Пошук</button>
+            </form>
             <div className={css.avatar}>
                 <Avatar {...stringAvatar(`${customer.name} ${customer.surname}`)} onClick={onClickAvatar}/>
                 <button className={css.btn} onClick={ModalIconExit}>Вийти</button>

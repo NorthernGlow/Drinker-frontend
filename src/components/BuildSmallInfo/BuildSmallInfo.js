@@ -11,7 +11,7 @@ const BuildSmallInfo = ({build}) => {
     const r = 2.9;
 
     function onClickBuild() {
-        navigate(`${id}`)
+        navigate(`/customer/drinks/${id}`)
     }
 
     return (

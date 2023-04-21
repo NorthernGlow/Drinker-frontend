@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Routes, Navigate} from "react-router-dom";
 
 import {ProjectPage, ProjectPageAfterSignIn} from "./containers";
-import {AuthorizationPage, InfoAboutCustomer, RegistrationPage, MainPage, InfoAboutBuilding} from "./pages";
+import {AuthorizationPage, InfoAboutCustomer, RegistrationPage, MainPage, InfoAboutBuilding, SearchPage} from "./pages";
 import {CreateBuildingPage, UpdateCustomerPage, AllMyBuildingPage, FavoriteBuildingPage} from "./pages";
 
 const App = () => {
@@ -20,6 +20,7 @@ const App = () => {
                     <Route index element={<Navigate to={'drinks'}/>}/>
                     <Route path={'drinks'} element={<MainPage/>}/>
                     <Route path={'drinks/:buildId'} element={<InfoAboutBuilding/>}/>
+                    <Route path={'drinks/search'} element={<SearchPage/>}/>
                     <Route path={':customerId'} element={<InfoAboutCustomer/>}/>
                     <Route path={':customerId/addBuilding'} element={<CreateBuildingPage/>}/>
                     <Route path={':customerId/update'} element={<UpdateCustomerPage/>}/>

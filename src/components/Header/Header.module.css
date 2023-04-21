@@ -1,4 +1,4 @@
-.Header{
+.Header {
     background-color: cadetblue;
     height: 80px;
     display: flex;
@@ -7,18 +7,36 @@
     padding: 0 20px;
 }
 
-.Icon{
+.Icon {
     font-size: 40px;
     margin: 20px;
 }
 
-.btn{
+.btn {
     background: cadetblue;
     border: 0;
     font-family: Arial, cursive;
+    font-size: 18px;
     margin-left: 10px;
 }
 
-.avatar{
+.avatar {
     display: flex;
+}
+
+.Button {
+    background-color: darkcyan;
+    height: 35px;
+    padding: 0 15px;
+    font-size: 20px;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+.search{
+    width: 500px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #f3eaea;
 }

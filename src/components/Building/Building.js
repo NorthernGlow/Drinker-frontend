@@ -6,7 +6,7 @@ import {Button, Rating, TextField} from "@mui/material";
 import {Comment} from "../Comment/Comment";
 
 const Building = () => {
-    const [building, setBuilding] = useState([]);
+    const [building, setBuilding] = useState({});
     const [customer, setCustomer] = useState({});
 
     const [value, setValue] = useState(0.0);
@@ -26,6 +26,7 @@ const Building = () => {
             .then((res) => res.json())
             .then((result) => {
                 setCustomer(result)
+                console.log(customer);
             })
 
     }, [customerId])
@@ -82,32 +83,38 @@ const Building = () => {
             })
     }
 
+    // console.log(building.specifics.wifi);
     return (
         <div>
             <div className={css.Box}>
                 <div>
-                    {building[0] && <img className={css.image}
-                                         src={`http://localhost:8080/buildPhoto/${building[0].mainPhoto}`} alt="rest"/>}
+                    {building && <img className={css.image}
+                                         src={`http://localhost:8080/buildPhoto/${building.mainPhoto}`} alt="rest"/>}
                 </div>
                 <div className={css.Box_in}>
                     <div>
-                        {building[0] && <h1 className={css.h1}>{building[0].name}</h1>}
+                        {building && <h1 className={css.h1}>{building.name}</h1>}
                         {/*{teg && <h3>#{teg.forFamily.name}</h3>}*/}
                     </div>
                     <div>
-                        {building[0] && <h2 className={css.h2}>Графік роботи: {building[0].schedule}</h2>}
-                        {/*{location && <h2 className={css.h2}>Розташування: м. {location.city}, {location.region} обл., вул. {location.street} {location.buildingNumber}</h2>}*/}
-                        {building[0] && <h2 className={css.h2}>Середній чек: {building[0].averageCheck} грн</h2>}
-                        {building[0] && <h2 className={css.h2}>Тел: {building[0].phone}</h2>}
-                        {/*{specifics && <h2 className={css.h2}>Особливості:</h2>}*/}
-                        {building[0] && <div><h2 className={css.h2}>Рейтинг: {building[0].rating}</h2>
-                            <Rating name="simple-controlled" value={building[0].rating} precision={0.5} size="large"
-                                    onChange={onChangeRating}/>
-                            <div>{value}</div>
-                        </div>}
-                        <Button className={css.btn} variant="contained" onClick={reservation}>
-                            Зарезервувати столик
-                        </Button>
+                        {building && <h2 className={css.h2}>Графік роботи: {building.schedule}</h2>}
+                        {building.location && <h2 className={css.h2}>Розташування: м. {building.location.city}, {building.location.region} обл., вул. {building.location.street} {building.location.buildingNumber}</h2>}
+                        {building && <h2 className={css.h2}>Середній чек: {building.averageCheck} грн</h2>}
+                        {building && <h2 className={css.h2}>Тел: {building.phone}</h2>}
+                        {/*{building && <h2 className={css.h2}>Особливості:</h2>}*/}
+                        {/*    /!*{building.specifics.wifi === true && <b>WI-FI </b>}*!/*/}
+                        {/*    /!*{building.specifics.parking === true && <b> парковка </b>}*!/*/}
+                        {/*    /!*{building.specifics.withAnimal === true && <b> з тваринами </b>}*!/*/}
+                        {/*    /!*{building.specifics.liveMusic === true && <b>жива музика</b>}*/}
+
+                        {/*{building && <div><h2 className={css.h2}>Рейтинг: {building.rating}</h2>*/}
+                        {/*    <Rating name="simple-controlled" value={building.rating} precision={0.5} size="large"*/}
+                        {/*            onChange={onChangeRating}/>*/}
+                        {/*    <div>{value}</div>*/}
+                        {/*</div>}*/}
+                        {/*<Button className={css.btn} variant="contained" onClick={reservation}>*/}
+                        {/*    Зарезервувати столик*/}
+                        {/*</Button>*/}
                     </div>
                 </div>
             </div>

@@ -22,8 +22,6 @@ const MyBuilding = () => {
         <div>
             {building && <div>{building.map(build => <BuildSmallInfo key={build.id} build={build}/>)}</div> }
             {!building.length && <div className={css.NoBuild}>У вас немає ваших власних закладів </div>}
-
-
         </div>
     );
 };
